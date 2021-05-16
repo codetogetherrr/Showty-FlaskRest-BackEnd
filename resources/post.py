@@ -10,9 +10,9 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.sql import func
 from marshmallow import ValidationError
 
-post_schema = PostSchema(many=True)
-post_update_schema = PostUpdateSchema(many=True)
-hashtag_schema = HashtagSchema(many=True)
+post_schema = PostSchema()
+post_update_schema = PostUpdateSchema()
+hashtag_schema = HashtagSchema()
 
 
 class Post(Resource):

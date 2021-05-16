@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from marshmallow import ValidationError
 
 
-follow_schema = FollowSchema(many=True)
+follow_schema = FollowSchema()
 
 
 class Follow(Resource):

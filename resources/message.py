@@ -3,7 +3,7 @@ from models.message import MessageModel
 from schemas.message import MessageSchema
 
 
-message_schema = MessageSchema(many=True)
+message_schema = MessageSchema()
 
 
 class Messages(Resource):
