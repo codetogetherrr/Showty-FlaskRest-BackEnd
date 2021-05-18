@@ -6,10 +6,7 @@ from schemas.like import LikeSchema
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from marshmallow import ValidationError
 
-
-
 like_schema = LikeSchema()
-
 
 class Like(Resource):
 
@@ -39,7 +36,7 @@ class Like(Resource):
 
         if user:
             try:
-                new_like = like_schema.load(request.get_json())
+                new_like = like_schema.loads(request.get_json())
                 print(new_like)
             except ValidationError as err:
                 return err.messages, 400
