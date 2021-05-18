@@ -21,10 +21,10 @@ class Like(Resource):
 
             if existing_like:
 
-                return {"message": "unliked"}, 200
+                return {"message": "liked"}, 200
             else:
 
-                return {"message": "liked"}, 201
+                return {"message": "unliked"}, 201
         else:
             return {"message": "User not found"}, 404
 
