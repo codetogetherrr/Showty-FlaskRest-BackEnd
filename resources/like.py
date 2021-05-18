@@ -7,7 +7,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from marshmallow import ValidationError
 
 
-like_schema = LikeSchema(many=True)
+like_schema = LikeSchema()
 
 
 class Like(Resource):
