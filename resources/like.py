@@ -38,7 +38,7 @@ class Like(Resource):
 
         if user:
             try:
-                new_like = like_schema.loads(request)
+                new_like = like_schema.loads(request.data)
             except ValidationError as err:
                 return err.messages, 400
 
