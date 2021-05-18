@@ -10,7 +10,4 @@ class LikeSchema(ma.SQLAlchemyAutoSchema):
         model = LikeModel
         dump_only = ("login",)
         exclude = ("likes_id",)
-
-        @post_load
-        def make_like(self, data, **kwargs):
-            return LikeModel(**data)
+        load_instance = True
