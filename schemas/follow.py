@@ -8,4 +8,5 @@ class FollowSchema(ma.SQLAlchemyAutoSchema):
         model = FollowModel
         dump_only = ("follower_id",)
         exclude = ("follow_id",)
+        load_instance = True
 

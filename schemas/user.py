@@ -8,7 +8,7 @@ class UserUpdateSchema(ma.SQLAlchemyAutoSchema):
         load_only = ("password", "image_id", "image_width", "image_height", "activated")
         dump_only = ("activated",)
         exclude = ("password", "id", "email", "login")
-
+        load_instance = True
 
 
 
@@ -19,4 +19,5 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_only = ("password", )
         dump_only = ("activated",)
         exclude = ("id",)
+        load_instance = True
 

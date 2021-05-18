@@ -8,3 +8,4 @@ class SubscribeSchema(ma.SQLAlchemyAutoSchema):
         model = SubscribeModel
         dump_only = ("subscription_id",)
         exclude = ("subscription_id",)
+        load_instance = True

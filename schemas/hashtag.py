@@ -7,3 +7,4 @@ class HashtagSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = HashtagModel
         exclude = ("hashtag_id",)
+        load_instance = True
