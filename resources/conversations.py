@@ -27,7 +27,7 @@ class Conversations(Resource):
         login = get_jwt_identity()
         user = UserModel.find_by_username(login)
         if user:
-            messages_to_delete = MessageModel.find_by_pair(login,otherlogin)
+            messages_to_delete = MessageModel.find_by_pair(login, otherlogin)
             if messages_to_delete:
                 for message in messages_to_delete:
                     message.delete_from_db()
