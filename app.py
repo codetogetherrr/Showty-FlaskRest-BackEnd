@@ -18,6 +18,7 @@ from resources.follow import Follow
 from resources.follow import Follows
 from resources.hashtag import Hashtag, Hashtags
 from resources.search import Search
+from resources.search import SearchUser
 from resources.subscribe import Subscribe, Subscriptions
 from resources.message import Messages
 from resources.message import UnreadMessages
@@ -120,6 +121,7 @@ api.add_resource(Follows, '/follows/<user_login>')
 api.add_resource(Hashtags, '/hashtags')
 api.add_resource(Hashtag, '/hashtag')
 api.add_resource(Search, '/search')
+api.add_resource(SearchUser, '/search_user')
 api.add_resource(Subscribe, '/subscribe', methods=['POST'], endpoint='subscribe')
 api.add_resource(Subscribe, '/subscribe/<hashtag>/<subscriber>', methods=['GET'], endpoint='checksubscription')
 api.add_resource(Subscriptions, '/subscriptions/<hashtag>')
