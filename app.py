@@ -126,7 +126,8 @@ api.add_resource(Subscriptions, '/subscriptions/<hashtag>')
 api.add_resource(Feed, '/feed/<int:page>/<int:per_page>')
 api.add_resource(Messages, '/messages/<loginA>/<loginB>')
 api.add_resource(UnreadMessages, '/unread_messages/<loginA>/<loginB>')
-api.add_resource(Conversations, '/conversations_of/<login>')
+api.add_resource(Conversations, '/conversations', methods=['GET'], endpoint='getconversations')
+api.add_resource(Conversations, '/conversation_with/<otherlogin>', methods=['DELETE'], endpoint='deleteconversation')
 
 
 if __name__ == '__main__':
