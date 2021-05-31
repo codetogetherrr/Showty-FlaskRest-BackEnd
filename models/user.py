@@ -8,13 +8,13 @@ class UserModel(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer,primary_key=True)
-    login=db.Column(db.String(80), nullable=False)
+    login=db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     fullname = db.Column(db.String(80))
     email = db.Column(db.String(80), unique=True, nullable=False)
     telephone = db.Column(db.String(80))
     description = db.Column(db.String(150))
-    gender = db.Column(db.String(80))
+    gender = db.Column(db.String(10))
     image_id = db.Column(db.String(80))
     image_height = db.Column(db.Integer)
     image_width = db.Column(db.Integer)
