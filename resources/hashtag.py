@@ -8,8 +8,8 @@ from schemas.hashtag import HashtagSchema
 from schemas.post import PostSchema
 
 
-post_schema = PostSchema(many=True)
-hashtag_schema = HashtagSchema(many=True)
+post_schema = PostSchema()
+hashtag_schema = HashtagSchema()
 
 
 
