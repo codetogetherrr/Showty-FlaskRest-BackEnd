@@ -4,7 +4,7 @@ from flask_restful import Api
 from flask_jwt_extended import (JWTManager, jwt_required, create_access_token,jwt_refresh_token_required, create_refresh_token, get_jwt_identity, get_raw_jwt)
 from datetime import timedelta
 from werkzeug.security import check_password_hash
-from resources.user import  User, UserConfirm, CurrentUser
+from resources.user import  User, UserConfirm, LoggedUser
 from resources.user import UserFacebookRegisterLogin
 from models.user import UserModel
 from resources.user import Users
@@ -90,19 +90,13 @@ def refresh():
     return jsonify(ret), 200
 
 
-@app.route('/protected', methods=['GET'])
-@jwt_required
-def protected():
-    current_user = get_jwt_identity()
-    return jsonify(login=current_user), 200
-
 
 api.add_resource(UserFacebookRegisterLogin, '/facebooklogin')
 api.add_resource(UserConfirm, '/userconfirm/<int:user_id>')
 api.add_resource(User, '/user', methods=['PUT', 'DELETE'], endpoint='getmodifydeleteuser')
 api.add_resource(User, '/user/<user_login>', methods=['GET'], endpoint='getuser')
 api.add_resource(User, '/user/register', methods=['POST'], endpoint='useregister')
-api.add_resource(CurrentUser, '/currentuser')
+api.add_resource(LoggedUser, '/loggeduser')
 api.add_resource(Users, '/users')
 api.add_resource(Post, '/post', methods=['GET', 'POST'], endpoint='creategetpost')
 api.add_resource(Post, '/post/<post_id>', methods=['PUT', 'DELETE'], endpoint='modifydeletepost')

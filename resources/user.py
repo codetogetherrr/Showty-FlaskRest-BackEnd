@@ -152,7 +152,7 @@ class UserFacebookRegisterLogin(Resource):
 
         return preLogin + str(iter)
 
-class CurrentUser(Resource):
+class LoggedUser(Resource):
 
     @jwt_required
     def get(self):
