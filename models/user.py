@@ -2,6 +2,8 @@ import os
 from db import db
 from flask import request, url_for
 from requests import Response, post
+from time import time
+import jwt
 
 
 class UserModel(db.Model):
@@ -52,8 +54,16 @@ class UserModel(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def create_confirmation_token(self):
+        return jwt.encode(
+            {'user_confirmation': self.login, 'exp': time() + os.environ.get('JWT_CONFIRMING_EXPIRATION_TIME', '')},
+            os.environ.get('JWT_CONFIRMING_SECRET_KEY', ''), algorithm='HS256')
+
+
     def send_conf_email(self) -> Response:
-        link = request.url_root[0:-1] + url_for("userconfirm", user_id=self.id)
+
+        token = self.create_confirmation_token
+        link = request.url_root[0:-1] + url_for("confirm_user_registration", token=token)
 
         return post(
             f"{os.environ.get('MAILGUN_BASE_URL','')}/messages",

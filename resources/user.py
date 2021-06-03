@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 import requests
 import os
 import re
+import jwt
 
 user_schema = UserSchema()
 user_update_schema = UserUpdateSchema(many=True)
@@ -181,7 +182,7 @@ class User(Resource):
         user.password = generate_password_hash(user.password)
 
         user.save_to_db()
-        #user.send_conf_email()
+        user.send_conf_email()
         return {"message": "User created successfully. Activation link sent to email provided"}, 201
 
 
@@ -225,13 +226,19 @@ class User(Resource):
 
 class UserConfirm(Resource):
     @classmethod
-    def get(cls, user_id:int):
-        user = UserModel.find_by_id(user_id)
+    def get(cls, token):
+        try:
+            login = jwt.decode(token, os.environ.get('JWT_CONFIRMING_SECRET_KEY', ''), algorithm='HS256')['user_confirmation']
+        except (jwt.ExpiredSignatureError):
+            return {'message': 'Jwt token expired'}, 401
+        except (jwt.DecodeError):
+            return {'message': 'Jwt token is invalid'}, 401
+
+        user = UserModel.find_by_id(login)
         if not user:
             return {"message": "User not found"}, 404
         user.activated = True
         user.save_to_db()
-        #return redirect("http://localhost:3000", code=302)
         headers = {"Content-Type": "text/html"}
         return make_response(render_template("confirmation_page.html", email=user.email), 200, headers)
 

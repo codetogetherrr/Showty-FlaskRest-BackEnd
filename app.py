@@ -92,7 +92,7 @@ def refresh():
 
 
 api.add_resource(UserFacebookRegisterLogin, '/facebooklogin')
-api.add_resource(UserConfirm, '/userconfirm/<int:user_id>')
+api.add_resource(UserConfirm, '/confirm_user_registration/<token>')
 api.add_resource(User, '/user', methods=['PUT', 'DELETE'], endpoint='getmodifydeleteuser')
 api.add_resource(User, '/user/<user_login>', methods=['GET'], endpoint='getuser')
 api.add_resource(User, '/user/register', methods=['POST'], endpoint='useregister')
