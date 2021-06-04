@@ -6,12 +6,12 @@ class PostModel(db.Model):
 
     __tablename__ = 'posts'
 
-    post_id = db.Column(db.Integer,primary_key=True)
+    post_id = db.Column(db.Integer, primary_key=True)
     image_id = db.Column(db.String(200), nullable=False)
     image_width = db.Column(db.Integer, nullable=False)
     image_height = db.Column(db.Integer, nullable=False)
     login = db.Column(db.String(80))
-    description = db.Column(db.String(80))
+    description = db.Column(db.String(150))
     date = db.Column(db.String(80))
 
     @classmethod
