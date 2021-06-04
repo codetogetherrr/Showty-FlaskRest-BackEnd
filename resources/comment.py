@@ -9,9 +9,9 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.sql import func
 from marshmallow import ValidationError
 
-comment_schema = CommentSchema(many=True)
-comment_update_schema = CommentUpdateSchema(many=True)
-hashtag_schema = HashtagSchema(many=True)
+comment_schema = CommentSchema()
+comment_update_schema = CommentUpdateSchema()
+hashtag_schema = HashtagSchema()
 
 
 class Comment(Resource):
