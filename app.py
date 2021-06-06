@@ -46,6 +46,13 @@ def check_if_token_in_blacklist(decrypted_token):
     return jti in blacklist
 
 
+@app.route('/test', methods=['GET'])
+@jwt_required
+def test():
+
+    return jsonify({"message": "test message"}), 400
+
+
 @app.route('/logout1', methods=['DELETE'])
 @jwt_required
 def logout1():
